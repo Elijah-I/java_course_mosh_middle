@@ -2,12 +2,12 @@ package me.middle;
 
 public class Main {
     static void main() {
-        var textBoxOne = new TextBox();
-        textBoxOne.setText("Box 1");
-        System.out.println("text: " + textBoxOne.text);
+        var employee = new Employee();
+        employee.setBaseSalary(50_000);
+        employee.setHourlyRate(20);
 
-        var textBoxTwo = new TextBox();
-        textBoxTwo.setText("Box 2");
-        System.out.println("text: " + textBoxTwo.text);
+        int wage = employee.getWage(10);
+
+        System.out.println(wage);
     }
 }
