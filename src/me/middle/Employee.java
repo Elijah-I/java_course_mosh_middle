@@ -4,6 +4,11 @@ public class Employee {
     private int baseSalary;
     private int hourlyRate;
 
+    public Employee(int baseSalary, int hourlyRate) {
+        this.setBaseSalary(baseSalary);
+        this.setHourlyRate(hourlyRate);
+    }
+
     public int getWage(int extraHours) {
         validateNumber(extraHours, "extraHours");
         return this.baseSalary + (this.hourlyRate * extraHours);
@@ -14,12 +19,12 @@ public class Employee {
             throw new IllegalArgumentException(name + " should be more than 0.");
     }
 
-    public void setBaseSalary(int baseSalary) {
+    private void setBaseSalary(int baseSalary) {
         validateNumber(baseSalary, "baseSalary");
         this.baseSalary = baseSalary;
     }
 
-    public void setHourlyRate(int hourlyRate) {
+    private void setHourlyRate(int hourlyRate) {
         validateNumber(hourlyRate, "hourlyRate");
         this.hourlyRate = hourlyRate;
     }
