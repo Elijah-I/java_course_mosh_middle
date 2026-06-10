@@ -31,4 +31,8 @@ public class DataReader {
     public static int getInt(String message, int min, int max) {
         return getNumber(message, min, max, scanner::nextInt);
     }
+
+    public static byte getByte(String message, int min, int max) {
+        return getNumber(message, (byte) min, (byte) max, scanner::nextByte);
+    }
 }

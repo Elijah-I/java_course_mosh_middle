@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Main {
     static void main(String[] args) {
         int principal = DataReader.getInt("Principal (1.000 - 1.000.000): ", 1_000, 1_000_000);
-        byte years = (byte) getNumber("Period (Years): ", 1, 30);
+        byte years = DataReader.getByte("Period (Years): ", 1, 30);
         float rate = (float) getNumber("Annual interest rate: ", 1, 30);
 
         double mortgage = calculateMortgage(principal, years, rate);
