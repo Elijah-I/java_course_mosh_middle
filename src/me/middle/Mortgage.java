@@ -1,7 +1,5 @@
 package me.middle;
 
-import java.text.NumberFormat;
-
 public class Mortgage {
     private final double mortgage;
     private final int principal;
@@ -10,7 +8,6 @@ public class Mortgage {
 
     final byte PERCENT = 100;
     final byte MONTH_IN_YEAR = 12;
-    NumberFormat number = NumberFormat.getCurrencyInstance();
 
     public Mortgage(
             int principalMin,
@@ -20,7 +17,9 @@ public class Mortgage {
             int annualMin,
             int annualMax
     ) {
-        principal = DataReader.getInt("Principal (1.000 - 1.000.000): ", principalMin, principalMax);
+        principal = DataReader.getInt("Principal (1.000 - 1.000.000): ",
+                                      principalMin,
+                                      principalMax);
         rate = DataReader.getFloat("Annual interest rate: ", annualMin, annualMax);
         years = DataReader.getByte("Period (Years): ", periodMin, periodMax);
 
@@ -36,17 +35,17 @@ public class Mortgage {
     }
 
     public void printMortgage() {
-        System.out.println("MORTGAGE\n----------\nMonthly payments: " + number.format(mortgage));
+        System.out.println("MORTGAGE\n----------\nMonthly payments: " + Formatter.number(mortgage));
     }
 
     public void printSchedule() {
         System.out.println("\n\nPAYMENT SCHEDULE\n----------");
-        
+
         int totalPrincipal = principal;
 
         while (totalPrincipal > 0) {
             totalPrincipal -= (int) mortgage;
-            System.out.println(number.format(Math.max(totalPrincipal, 0)));
+            System.out.println(Formatter.number(Math.max(totalPrincipal, 0)));
         }
     }
 }
