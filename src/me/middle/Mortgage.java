@@ -6,9 +6,6 @@ public class Mortgage {
     private final byte years;
     private final float rate;
 
-    final byte PERCENT = 100;
-    final byte MONTH_IN_YEAR = 12;
-
     public Mortgage(
             int principalMin,
             int principalMax,
@@ -27,6 +24,9 @@ public class Mortgage {
     }
 
     private double calculateMortgage() {
+        byte PERCENT = 100;
+        byte MONTH_IN_YEAR = 12;
+        
         int period = years * MONTH_IN_YEAR;
         float monthRate = rate / MONTH_IN_YEAR / PERCENT;
         double ratedPeriod = Math.pow(1 + monthRate, period);
