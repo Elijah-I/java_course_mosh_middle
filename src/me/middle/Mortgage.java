@@ -6,19 +6,10 @@ public class Mortgage {
     private final byte years;
     private final float rate;
 
-    public Mortgage(
-            int principalMin,
-            int principalMax,
-            int periodMin,
-            int periodMax,
-            int annualMin,
-            int annualMax
-    ) {
-        principal = DataReader.getInt("Principal (1.000 - 1.000.000): ",
-                                      principalMin,
-                                      principalMax);
-        rate = DataReader.getFloat("Annual interest rate: ", annualMin, annualMax);
-        years = DataReader.getByte("Period (Years): ", periodMin, periodMax);
+    public Mortgage(int[] prLimits, int[] peLimits, int[] anLimits) {
+        principal = DataReader.getInt("Principal (1.000 - 1.000.000): ", prLimits[0], prLimits[1]);
+        years = DataReader.getByte("Period (Years): ", peLimits[0], peLimits[1]);
+        rate = DataReader.getFloat("Annual interest rate: ", anLimits[0], anLimits[1]);
 
         mortgage = this.calculateMortgage();
     }
@@ -26,7 +17,7 @@ public class Mortgage {
     private double calculateMortgage() {
         byte PERCENT = 100;
         byte MONTH_IN_YEAR = 12;
-        
+
         int period = years * MONTH_IN_YEAR;
         float monthRate = rate / MONTH_IN_YEAR / PERCENT;
         double ratedPeriod = Math.pow(1 + monthRate, period);
