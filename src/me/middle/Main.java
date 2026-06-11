@@ -1,13 +1,12 @@
 package me.middle;
 
 import java.text.NumberFormat;
-import java.util.Scanner;
 
 public class Main {
     static void main(String[] args) {
         int principal = DataReader.getInt("Principal (1.000 - 1.000.000): ", 1_000, 1_000_000);
         byte years = DataReader.getByte("Period (Years): ", 1, 30);
-        float rate = (float) getNumber("Annual interest rate: ", 1, 30);
+        float rate = DataReader.getFloat("Annual interest rate: ", 1, 30);
 
         double mortgage = calculateMortgage(principal, years, rate);
 
@@ -23,24 +22,6 @@ public class Main {
             principal -= mortgage;
             System.out.println(number.format(Math.max(principal, 0)));
         }
-    }
-
-    private static double getNumber(String message, double min, double max) {
-        double number;
-        Scanner scanner = new Scanner(System.in);
-
-        while (true) {
-            System.out.print(message);
-            number = scanner.nextDouble();
-
-            if (number >= min && number <= max) {
-                break;
-            }
-
-            ErrorHandler.validateMinMax(number, min, max);
-        }
-
-        return number;
     }
 
     private static double calculateMortgage(int principal, byte years, float rate) {

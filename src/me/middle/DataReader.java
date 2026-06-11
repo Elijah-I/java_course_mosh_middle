@@ -35,4 +35,8 @@ public class DataReader {
     public static byte getByte(String message, int min, int max) {
         return getNumber(message, (byte) min, (byte) max, scanner::nextByte);
     }
+
+    public static float getFloat(String message, int min, int max) {
+        return getNumber(message, (float) min, (float) max, scanner::nextFloat);
+    }
 }
