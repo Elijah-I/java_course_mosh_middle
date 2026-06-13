@@ -26,17 +26,17 @@ public class Mortgage {
     }
 
     public void printMortgage() {
-        System.out.println("MORTGAGE\n----------\nMonthly payments: " + Formatter.number(mortgage));
+        Logger.log("MORTGAGE\n----------\nMonthly payments: " + Formatter.number(mortgage));
     }
 
     public void printSchedule() {
-        System.out.println("\n\nPAYMENT SCHEDULE\n----------");
+        Logger.log("\n\nPAYMENT SCHEDULE\n----------");
 
         int totalPrincipal = principal;
 
         while (totalPrincipal > 0) {
             totalPrincipal -= (int) mortgage;
-            System.out.println(Formatter.number(Math.max(totalPrincipal, 0)));
+            Logger.log(Formatter.number(Math.max(totalPrincipal, 0)));
         }
     }
 }
