@@ -11,10 +11,10 @@ public class MortgageCalculator {
         years = Console.getByte("Period (Years): ", periodLimits[0], periodLimits[1]);
         rate = Console.getFloat("Annual interest rate: ", annualLimits[0], annualLimits[1]);
 
-        mortgage = this.calculateMortgage();
+        mortgage = calculateMortgage();
     }
 
-    private double calculateMortgage() {
+    public double calculateMortgage() {
         byte PERCENT = 100;
         byte MONTH_IN_YEAR = 12;
 
@@ -25,18 +25,20 @@ public class MortgageCalculator {
         return (principal * (monthRate * ratedPeriod) / (ratedPeriod - 1));
     }
 
-    public void printMortgage() {
-        Console.log("MORTGAGE\n----------\nMonthly payments: " + Formatter.number(mortgage));
-    }
-
-    public void printSchedule() {
-        Console.log("\n\nPAYMENT SCHEDULE\n----------");
-
+    public double[] getTotalPrincipals() {
+        int steps = (int) Math.ceil(principal / mortgage);
+        var totalPrincipals = new double[steps];
         int totalPrincipal = principal;
 
-        while (totalPrincipal > 0) {
+        for (int step = 0; step < steps; step++) {
             totalPrincipal -= (int) mortgage;
-            Console.log(Formatter.number(Math.max(totalPrincipal, 0)));
+            totalPrincipals[step] = Math.max(totalPrincipal, 0);
         }
+
+        return totalPrincipals;
+    }
+
+    public double getMortgage() {
+        return mortgage;
     }
 }
