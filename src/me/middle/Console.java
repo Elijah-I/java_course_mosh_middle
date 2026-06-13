@@ -3,7 +3,7 @@ package me.middle;
 import java.util.Scanner;
 import java.util.function.Supplier;
 
-public class DataReader {
+public class Console {
     static Scanner scanner = new Scanner(System.in);
 
     private static <T extends Number & Comparable<T>> T getNumber(
@@ -15,7 +15,7 @@ public class DataReader {
         T number;
 
         while (true) {
-            System.out.print(message);
+            log(message, true);
             number = getter.get();
 
             if (number.compareTo(min) >= 0 && number.compareTo(max) <= 0) {
@@ -38,5 +38,18 @@ public class DataReader {
 
     public static float getFloat(String message, int min, int max) {
         return getNumber(message, (float) min, (float) max, scanner::nextFloat);
+    }
+
+    public static void log(String message) {
+        System.out.println(message);
+    }
+
+    public static void log(String message, boolean inline) {
+        if (inline) {
+            System.out.print(message);
+            return;
+        }
+
+        log(message);
     }
 }

@@ -7,9 +7,9 @@ public class Mortgage {
     private final float rate;
 
     public Mortgage(int[] prLimits, int[] peLimits, int[] anLimits) {
-        principal = DataReader.getInt("Principal (1.000 - 1.000.000): ", prLimits[0], prLimits[1]);
-        years = DataReader.getByte("Period (Years): ", peLimits[0], peLimits[1]);
-        rate = DataReader.getFloat("Annual interest rate: ", anLimits[0], anLimits[1]);
+        principal = Console.getInt("Principal (1.000 - 1.000.000): ", prLimits[0], prLimits[1]);
+        years = Console.getByte("Period (Years): ", peLimits[0], peLimits[1]);
+        rate = Console.getFloat("Annual interest rate: ", anLimits[0], anLimits[1]);
 
         mortgage = this.calculateMortgage();
     }
@@ -26,17 +26,17 @@ public class Mortgage {
     }
 
     public void printMortgage() {
-        Logger.log("MORTGAGE\n----------\nMonthly payments: " + Formatter.number(mortgage));
+        Console.log("MORTGAGE\n----------\nMonthly payments: " + Formatter.number(mortgage));
     }
 
     public void printSchedule() {
-        Logger.log("\n\nPAYMENT SCHEDULE\n----------");
+        Console.log("\n\nPAYMENT SCHEDULE\n----------");
 
         int totalPrincipal = principal;
 
         while (totalPrincipal > 0) {
             totalPrincipal -= (int) mortgage;
-            Logger.log(Formatter.number(Math.max(totalPrincipal, 0)));
+            Console.log(Formatter.number(Math.max(totalPrincipal, 0)));
         }
     }
 }
