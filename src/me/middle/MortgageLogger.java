@@ -1,9 +1,9 @@
 package me.middle;
 
 public class MortgageLogger {
-    private final MortgageCalculator calculator;
+    private final IMortgageCalculator calculator;
 
-    public MortgageLogger(MortgageCalculator calculator) {
+    public MortgageLogger(IMortgageCalculator calculator) {
         this.calculator = calculator;
     }
 

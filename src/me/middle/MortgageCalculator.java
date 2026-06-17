@@ -1,6 +1,6 @@
 package me.middle;
 
-public class MortgageCalculator {
+public class MortgageCalculator implements IMortgageCalculator {
     private final double mortgage;
     private final int principal;
     private final byte years;
@@ -14,6 +14,7 @@ public class MortgageCalculator {
         mortgage = calculateMortgage();
     }
 
+    @Override
     public double calculateMortgage() {
         byte PERCENT = 100;
         byte MONTH_IN_YEAR = 12;
@@ -25,6 +26,7 @@ public class MortgageCalculator {
         return (principal * (monthRate * ratedPeriod) / (ratedPeriod - 1));
     }
 
+    @Override
     public double[] getTotalPrincipals() {
         int steps = (int) Math.ceil(principal / mortgage);
         var totalPrincipals = new double[steps];
@@ -38,6 +40,7 @@ public class MortgageCalculator {
         return totalPrincipals;
     }
 
+    @Override
     public double getMortgage() {
         return mortgage;
     }
